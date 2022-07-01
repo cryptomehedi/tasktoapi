@@ -30,11 +30,11 @@ async function run(){
         await client.connect()
         const tasksCollection = client.db('TasksList').collection('tasks')
 
-        app.post('/task', async(req, res)=> {
-            const task = req.body.task
-            const results = await tasksCollection.insertOne({task})
-            res.send(results)
-        })
+        // app.post('/task', async(req, res)=> {
+        //     const task = req.body.task
+        //     const results = await tasksCollection.insertOne({task})
+        //     res.send(results)
+        // })
 
         app.get('/task', async(req, res)=> {
             const query = {}
