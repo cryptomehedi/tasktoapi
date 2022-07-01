@@ -23,24 +23,24 @@ app.use(express.json())
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ouoh3.mongodb.net/?retryWrites=true&w=majority`;
 // const uri = `mongodb+srv://heytodobro:3UKGnY8s7HohA1s8@cluster0.ouoh3.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// console.log(uri);
+
 
 async function run(){
     try {
         await client.connect()
         const tasksCollection = client.db('TasksList').collection('tasks')
 
-        // app.post('/task', async(req, res)=> {
-        //     const task = req.body.task
-        //     const results = await tasksCollection.insertOne({task})
-        //     res.send(results)
-        // })
+        app.post('/task', async(req, res)=> {
+            const task = req.body.task
+            const results = await tasksCollection.insertOne({task})
+            res.send(results)
+        })
 
         app.get('/task', async(req, res)=> {
-            // const query = {}
-            // const results = await tasksCollection.find(query).toArray()
-            // res.send(results)
-            res.send({status: 'okey'})
+            const query = {}
+            const results = await tasksCollection.find(query).toArray()
+            console.log(results)
+            res.send(results)
         })
 
         app.put('/task/:id', async(req, res)=> {
