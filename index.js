@@ -37,9 +37,10 @@ async function run(){
         // })
 
         app.get('/task', async(req, res)=> {
-            const query = {}
-            const results = await tasksCollection.find(query).toArray()
-            res.send(results)
+            // const query = {}
+            // const results = await tasksCollection.find(query).toArray()
+            // res.send(results)
+            res.send({status: 'okey'})
         })
 
         app.put('/task/:id', async(req, res)=> {
